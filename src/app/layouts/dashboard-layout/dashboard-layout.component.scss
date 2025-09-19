@@ -1,0 +1,52 @@
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.dashboard-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100vw;
+}
+// Remove black background
+// Consistent card style for all dashboard screens
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  background: var(--background-main, #f4f7fb);
+  overflow-y: auto;
+  min-width: 0;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+@media (max-width: 992px) {
+  .dashboard-body {
+    flex-direction: column;
+    width: 100vw;
+  }
+}
+
+// ...existing code...
+
+@media (max-width: 992px) {
+  .dashboard-body {
+    flex-direction: column;
+    width: 100vw;
+  }
+  .dashboard-content {
+    padding: 1rem;
+    background: var(--background-main, #f4f7fb);
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+}
