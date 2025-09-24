@@ -1,0 +1,243 @@
+.wrapper {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/assets/images/fondo-azul.jpg');
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  padding: 0!important;
+  margin: 0!important;
+}
+
+.reg-shell {
+  display: grid;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+/* Tarjeta de selección de rol */
+.role-card {
+  width: min(100%, 980px);
+  margin-inline: auto;
+
+  .role-card-header {
+    // width: 100%;
+    // height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 8px;
+  }
+
+  .actions-header-colum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+  }
+
+
+  .role-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 12px;
+  }
+
+  .role-pill {
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    padding: 6px 10px;
+  }
+
+  .title-card {
+    width: 100%;
+    font-family: Nexa-Bold, Arial, sans-serif;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); /* ~22–32px */
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle-card {
+    width: 100%;
+    font-family: Nexa-Light, Arial, sans-serif;
+    font-size: clamp(1rem, 0.8rem + 0.5vw, 1.25rem); /* ~16–20px */
+    color: #000000;
+    margin-top: 1rem;
+  }
+
+  .text-radio {
+    width: 100%;
+    font-size: 1.25rem;
+    font-family: Nexa, Arial, sans-serif;
+    color: #000000;
+  }
+}
+
+/* Botón regresar */
+.back-btn {
+  width: min(100%, 980px);
+  margin-inline: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-btn button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding-inline: 14px;
+}
+
+/* Área de formularios */
+.forms-area {
+  width: min(100%, 980px);
+  margin-inline: auto;
+}
+/* Contenedor con el mismo ancho que .role-card y .forms-area */
+.actions-row {
+  //width: min(100%, 980px);
+  margin: 8px auto 0;       /* centra el contenedor como la card */
+  display: flex;
+  justify-content: flex-end; /* botón a la derecha */
+}
+
+/* Botón minimal y consistente con la UI */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;     /* no todo en mayúsculas */
+  font-weight: 500;
+  border-radius: 10px;      /* mismo radio suave */
+  padding-inline: 14px;
+}
+
+.actions-row {
+  //width: min(100%, 980px);
+  margin: 8px auto 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-btn {
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  width: auto!important;
+  height: auto!important;
+  font-size: 1.9rem;
+  color: #0092B8;
+}
+
+/* =========================
+   Estilos para el mat-radio-button con MDC
+   ========================= */
+
+/* Estilo para el icono dentro del radio button */
+.mat-icon{
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep .mat-mdc-radio-button mat-icon {
+  text-align: center;
+  font-size: 2.5rem; /* Tamaño del ícono */
+  color: #0092B8; /* Color del ícono */
+  transition: color 0.3s ease; /* Suaviza el cambio de color */
+}
+
+/* Cambio de color del ícono cuando está seleccionado */
+::ng-deep .mat-mdc-radio-button:hover mat-icon {
+  color: #0092B8; /* Color más oscuro en el ícono cuando se pasa el ratón */
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-form-field {
+  color: #231F20;
+  font-family: Nexa;
+  font-size: 20px;
+}
+
+::ng-deep .mat-mdc-radio-button.mat-accent {
+  --mdc-radio-selected-focus-icon-color: #0092B8;
+  --mdc-radio-selected-hover-icon-color: #0092B8;
+  --mdc-radio-selected-icon-color: #0092B8;
+  --mdc-radio-selected-pressed-icon-color: #0092B8;
+  --mat-radio-ripple-color: #000;
+  --mat-radio-checked-ripple-color: #0092B8;
+}
+
+::ng-deep .mdc-radio {
+  display: inline-block;
+  position: relative;
+  flex: 0 0 auto;
+  box-sizing: content-box;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  will-change: opacity,transform,border-color,color;
+}
+
+
+/* =========================
+   Ajustes para la vista móvil (≤700px)
+   ========================= */
+
+@media (max-width: 700px) {
+  //Este selector me ayuda a modificar el ancho del label del radio button
+  ::ng-deep .mdc-label {
+    width: 180px;
+  }
+  .role-card {
+    padding: 15px;
+  }
+
+  .role-row {
+    flex-direction: row;  /* Alinea los radio buttons verticalmente */
+    gap: 10px;
+  }
+
+  .role-pill {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  /* Títulos centrados y con más espacio */
+  .title-perfil {
+    text-align: center;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); /* ~22–32px */
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .title-table {
+    text-align: center;
+    font-size: clamp(1.75rem, 1.3rem + 1.3vw, 2.25rem); /* ~24–36px */
+    line-height: 1.25;
+    margin-top: 0.5rem;
+  }
+
+  .mat-radio-button {
+    font-size: 1rem;
+  }
+
+}

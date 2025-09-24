@@ -1,1 +1,59 @@
-<p>registro-usuarios-screen works!</p>
+<div class="wrapper">
+  <div class="reg-shell">
+    <!-- Selección de tipo de usuario -->
+    <mat-card class="role-card">
+      <mat-card-header class="role-card-header">
+        <div class="actions-header-colum">
+          <mat-card-title class="title-card">Registro de usuario</mat-card-title>
+          <mat-card-subtitle class="subtitle-card">
+            Selecciona el tipo para mostrar el formulario correspondiente
+          </mat-card-subtitle>
+        </div>
+        <!-- Botón regresar compartido -->
+        <div class="actions-row">
+          <button mat-icon-button class="back-btn" (click)="goBack()">
+            <mat-icon class="back-icon">arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+      <!-- Radio buttons como contenido para elegir al ususario -->
+      <mat-card-content>
+        <div class="role-row">
+          <mat-radio-group aria-label="Tipo de usuario" [(ngModel)]="user.tipo_usuario" (change)="radioChange($event)" [disabled]="editar">
+            <!-- Administrador -->
+            <mat-radio-button
+              class="role-pill"
+              value="administrador"
+              *ngIf="!facadeService.getUserGroup() || facadeService.getUserGroup() === 'administrador'">
+              <mat-icon class="me-1" fontIcon="admin_panel_settings"></mat-icon>
+              <span class="text-radio">Administrador</span>
+            </mat-radio-button>
+            <!-- Alumno -->
+             <mat-radio-button class="role-pill" value="alumno">
+              <mat-icon class="me-1" fontIcon="school"></mat-icon>
+              <span class="text-radio">Alumno</span>
+            </mat-radio-button>
+            <!-- Profesor -->
+            <mat-radio-button
+              class="role-pill"
+              value="maestro"
+              *ngIf="!facadeService.getUserGroup() || facadeService.getUserGroup() === 'administrador' || facadeService.getUserGroup() === 'maestro'">
+              <mat-icon class="me-1" fontIcon="person"></mat-icon>
+              <span class="text-radio">Maestro</span>
+            </mat-radio-button>
+
+          </mat-radio-group>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <!-- Formularios de registro según el tipo seleccionado -->
+    <div class="forms-area">
+      <!-- Formularios (vistas) de cada usuario (inyección dinámica) -->
+      <app-registro-admin *ngIf="isAdmin" [rol]="tipo_user" [datos_user]="user"></app-registro-admin>
+
+      <app-registro-alumnos *ngIf="isAlumno" [rol]="tipo_user" [datos_user]="editar ? user : null"></app-registro-alumnos>
+
+      <app-registro-maestros *ngIf="isMaestro" [rol]="tipo_user" [datos_user]="editar ? user : null"></app-registro-maestros>
+    </div>
+  </div>
+</div>

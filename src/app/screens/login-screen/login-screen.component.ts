@@ -24,7 +24,11 @@ export class LoginScreenComponent implements OnInit {
 
   }
   public login(){
-
+    this.errors = {};
+    this.errors = this.facadeService.validarLogin(this.username, this.password);
+    if(Object.keys(this.errors).length > 0){
+      return false;
+    }
   }
   public showPassword(){
     this.type = this.type === "password" ? "text" : "password";
