@@ -10,6 +10,9 @@ import { LoginScreenComponent } from './screens/login-screen/login-screen.compon
 import { RegistroUsuariosScreenComponent } from './screens/registro-usuarios-screen/registro-usuarios-screen.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { RegistroAdminComponent } from './partials/registro-admin/registro-admin.component';
+import { RegistroAlumnosComponent } from './partials/registro-alumnos/registro-alumnos.component';
+import { RegistroMaestrosComponent } from './partials/registro-maestros/registro-maestros.component';
 
 //Angular Material
 import {MatButtonModule} from '@angular/material/button';
@@ -17,9 +20,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
-import { RegistroAdminComponent } from './partials/registro-admin/registro-admin.component';
-import { RegistroAlumnosComponent } from './partials/registro-alumnos/registro-alumnos.component';
-import { RegistroMaestrosComponent } from './partials/registro-maestros/registro-maestros.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 //Ngx-cookie-service
 import { CookieService } from 'ngx-cookie-service';
@@ -45,7 +47,9 @@ import { CookieService } from 'ngx-cookie-service';
     FormsModule,
     HttpClientModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     CookieService
