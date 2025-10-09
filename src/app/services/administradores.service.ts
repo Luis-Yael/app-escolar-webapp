@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { FacadeService } from './facade.service';
 import { ErrorsService } from './tools/errors.service';
 import { ValidatorService } from './tools/validator.service';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -104,4 +106,9 @@ export class AdministradoresService {
 
   }
 
+  //Aquí van los servicios HTTP
+  //Servicio para registrar un nuevo usuario
+  public registrarAdmin (data: any): Observable <any>{
+    return this.http.post<any>(`${environment.url_api}/admin/`,data, httpOptions);
+  }
 }
