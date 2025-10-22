@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { AlumnosService } from 'src/app/services/alumnos.service';
 
 @Component({
   selector: 'app-registro-alumnos',
@@ -27,10 +28,16 @@ export class RegistroAlumnosComponent implements OnInit {
   constructor(
     private router: Router,
     private location : Location,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    private alumnosService: AlumnosService
   ) { }
 
   ngOnInit(): void {
+    this.alumno = this.alumnosService.esquemaAlumno();
+    // Rol del usuario
+    this.alumno.rol = this.rol;
+
+    console.log("Datos alumno: ", this.alumno);
   }
 
   public regresar(){
@@ -38,7 +45,37 @@ export class RegistroAlumnosComponent implements OnInit {
   }
 
   public registrar(){
+    //Validamos si el formulario está lleno y correcto
+    this.errors = {};
+    this.errors = this.alumnosService.validarAlumno(this.alumno, this.editar);
+    if(Object.keys(this.errors).length > 0){
+      return false;
+    }
+
     // Lógica para registrar un nuevo alumno
+    if(this.alumno.password == this.alumno.confirmar_password){
+      this.alumnosService.registrarAlumno(this.alumno).subscribe(
+        (response) => {
+          // Redirigir o mostrar mensaje de éxito
+          alert("Alumno registrado exitosamente");
+          console.log("Alumno registrado: ", response);
+          if(this.token && this.token !== ""){
+            this.router.navigate(["alumnos"]);
+          }else{
+            this.router.navigate(["/"]);
+          }
+        },
+        (error) => {
+          // Manejar errores de la API
+          alert("Error al registrar alumno");
+          console.error("Error al registrar alumno: ", error);
+        }
+      );
+    }else{
+      alert("Las contraseñas no coinciden");
+      this.alumno.password="";
+      this.alumno.confirmar_password="";
+    }
   }
 
   public actualizar(){
